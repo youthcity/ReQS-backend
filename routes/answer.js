@@ -7,7 +7,7 @@ var AnswerModel = require('../models/answer');
 // var data =require('./data/topic_data.json');
 
 
-// Question /question
+// Answer /answer
 router.route('/')
   .get((req, res, next) => {
     // 批量上传数据代码
@@ -48,7 +48,7 @@ router.route('/')
   });
 
 
-// Question /question:id get delete patch
+// Answer /answer:id get delete patch
 router.route('/:id')
   .get((req, res, next) => {
     const { id } = req.params;
@@ -99,5 +99,62 @@ router.route('/:id')
     } );
   });
 
+
+// 评论功能
+router.route('/:id/comment')
+  .get((req, res, next) => {
+    //todo 根据answer Id 获取所有评论
+    const { id } = req.params;
+        AnswerModel.findById(id)
+      .then((result) => {
+        res.status(200).json({ message: 'Ok', success: true, result });
+      })
+      .catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });
+  })
+  .post((req, res, next) => {
+    // 新增评论
+    const { id } = req.params;
+    const {content} = req.body;
+    const user = req.session.user;
+
+    if (!user) {
+      res.status(400).json({ message: '用户未登录' });
+      return;
+    }
+    let author = user._id;
+
+    let comment = {
+      content,
+      author
+     };
+     AnswerModel.addComment(id, comment)
+      .then((result) => {
+        res.status(200).json({ message: 'Ok', success: true,result });
+      })
+      .catch((e) => {
+        res.status(400).json({ message: 'error' });
+      });
+  })
+  .delete((req, res, next) => {
+    // 删除所有评论
+    const { id } = req.params;
+    AnswerModel.remove({
+      _id: id,
+    })
+    .then((result) => {
+      if (!result || result.ok != 1){
+        res.status(400).json({ message: 'error' });
+        return;
+      }
+        res.status(200).json({ message: 'Ok', success: true,result });
+    })
+    .catch((e) => {
+      res.status(400).json({ message: 'error' });
+      next(e);
+    });
+  });
 
 module.exports = router;

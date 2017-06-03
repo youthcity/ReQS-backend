@@ -1,12 +1,30 @@
 var AnswerModel = require('../lib/mongo').Answer;
 
 module.exports = {
+  addComment(questionId, comment) {
+    return new Promise((resolve, reject) => {
+      AnswerModel.update({
+        _id: questionId
+      }, {
+          $push: { comment: comment }
+        }, (error, doc) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(doc);
+          }
+        }
+
+      );
+    });
+  },
+
   getAnswer(questionId) {
-     return AnswerModel
+    return AnswerModel
       .find({ questionId })
       .populate('author')
       .sort({ _id: 1 })
-      .exec(); 
+      .exec();
   },
 
 
@@ -22,7 +40,7 @@ module.exports = {
       });
     });
   },
-  find(data={}, fields=null, options={}) {
+  find(data = {}, fields = null, options = {}) {
     return new Promise((resolve, reject) => {
       AnswerModel.find(data, fields, options, (error, doc) => {
         if (error) {
