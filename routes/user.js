@@ -38,6 +38,7 @@ router.post('/signin', (req, res, next) => {
 
   UserModel.findOne({username})
     .then(user => {
+      console.log(user);
       if (!user) {
         res.status(400).json({error: '用户不存在'});
       }

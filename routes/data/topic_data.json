@@ -1,0 +1,334 @@
+{
+    "topics": [
+        {
+            "tagName": "iOS",
+            "summary": "关于Apple的iOS，iPhone，iPad开发方面的话题。",
+            "sectionName": "Mobile"
+        },
+        {
+            "tagName": "算法",
+            "summary": "执着寻找高效的算法",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "开源项目",
+            "summary": "分享开源项目，和讨论一些开源项目的设计与使用。",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "插画 / 设计",
+            "summary": "会做设计或画画的 Ruby 程序员们，来分享你的作品",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "Homeland",
+            "summary": "关于 [Homeland](http://gethomeland.com) (Ruby China 网站的开源项目) 安装部署，以及功能讨论等，请发到这里。\r\n\r\n此节点不会在社区列表展示，请通过导航栏直接访问。提问前请确定你以 [查阅文档](http://gethomeland.com) 以后仍有问题！",
+            "sectionName": "Ruby China"
+        },
+        {
+            "tagName": "Nginx",
+            "summary": "...",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "RubyConf",
+            "summary": "在这个节点讨论 Ruby Conference 的相关话题。",
+            "sectionName": "活动"
+        },
+        {
+            "tagName": "JavaScript",
+            "summary": "关于 Javascript 前端开发的一些话题。\r\n\r\n注意！此栏目只接受前端有关的 JavaScript 讨论话题，Node.js 的内容请发到 Node.js 节点。",
+            "sectionName": "Front-End"
+        },
+        {
+            "tagName": "运维",
+            "summary": "服务器运维方面的技术讨论节点",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "Golang",
+            "summary": "来自 Google 的语言，相信有很多人感兴趣吧",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "搜索引擎",
+            "summary": "每个网站都必然需要的东西，在这讨论构建网站搜素引擎相关的话题。",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "Mailer",
+            "summary": "邮件发送以及一些基于邮件的功能开发技术讨论。",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "分享",
+            "summary": "发现好玩的东西，发出来和大家分享。",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "数学",
+            "summary": "数学",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "Gem",
+            "summary": "在这里讨论 Ruby Gem，分享使用心得，发现有趣实用的 Gem",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "重构",
+            "summary": "我们要写出更佳漂亮的 Ruby Code",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "线下活动",
+            "summary": "其他线下活动",
+            "sectionName": "活动"
+        },
+        {
+            "tagName": "Redis",
+            "summary": "...",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "创业",
+            "summary": "创业",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "Ruby",
+            "summary": "Ruby 是一门优美的语言",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "反馈",
+            "summary": "使用过程中遇到了问题，可以在这里提交。",
+            "sectionName": "Ruby China"
+        },
+        {
+            "tagName": "数据库",
+            "summary": "MySQL, SQLite, PostgresSQL, MongoDB ... 所有一切和数据库相关的话题讨论。",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "RVM/rbenv",
+            "summary": "Ruby Version Manager 工具的一些讨论。",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "Mac",
+            "summary": "Mac、MacBook、iMac、OS X (新版本应该叫 macOS 了) 方面的讨论。",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "Python",
+            "summary": "关于 Python 的话题，虽然这里是 Ruby 社区，但是我们偶尔也可以聊聊 Python。",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "书籍",
+            "summary": "Wiki 里面也有我们精选出来的书籍哦！[链接](/wiki/books)",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "JRuby",
+            "summary": "JRuby 讨论区",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "安全",
+            "summary": "Web Security",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "RubyTuesday",
+            "summary": "RubyTuesday 是来自台湾的一个习惯，大家会再周二晚上聚在一起聊关于 Ruby 的话题。",
+            "sectionName": "活动"
+        },
+        {
+            "tagName": "其他",
+            "summary": "无法确定的东西，发在这里。",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "开发工具",
+            "summary": "分享好用的工具，软件，线上软件等等。",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "新手问题",
+            "summary": "新手问题区",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "产品控",
+            "summary": "分享新发现的互联网产品。",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "ObjC/Swift",
+            "summary": "Mac OS X 与 iOS 开发",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "Android",
+            "summary": "关于Android开发的话题。",
+            "sectionName": "Mobile"
+        },
+        {
+            "tagName": "云服务",
+            "summary": "这是云时代！（本网站使用 UCloud 云主机以及 UPYun 云存储）",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "Git",
+            "summary": "Git 版本管理工具，以及一些版本管理的技巧讨论。",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "Sinatra",
+            "summary": "Sinatra Web 框架",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "Haskell",
+            "summary": "Haskell",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "Erlang/Elixir",
+            "summary": "Erlang 是一种面向并发的通用编程语言 http://www.erlang.org\r\nElixir 是基于 Erlang VM 的语言 http://elixir-lang.org",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "MongoDB",
+            "summary": "MongoDB 数据库，目前最热门的 NoSQL 数据库。",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "CSS",
+            "summary": "CSS, SASS, SCSS 方面的东西。",
+            "sectionName": "Front-End"
+        },
+        {
+            "tagName": "Clojure",
+            "summary": "Clojure",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "Rails",
+            "summary": "Ruby on Rails, 也称 Rails, 是一个使用 Ruby 语言写的开源 Web 开发框架。",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "测试",
+            "summary": "TDD, BDD ...",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "部署",
+            "summary": "产品部署方面的讨论。",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "Linux",
+            "summary": "...",
+            "sectionName": "Back-End"
+        },
+        {
+            "tagName": "公告",
+            "summary": "本站公布消息专用，大家别乱发到这里哦",
+            "sectionName": "Ruby China"
+        },
+        {
+            "tagName": "RubyMotion",
+            "summary": "http://www.rubymotion.com",
+            "sectionName": "Mobile"
+        },
+        {
+            "tagName": "Rust",
+            "summary": "http://www.rust-lang.org/",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "求职",
+            "summary": "千里马寻伯乐",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "产品推广",
+            "summary": "如果你是 Ruby China 的活跃会员，你可以适当在这里推广你的产品。\r\n\r\n#### 一些要求\r\n\r\n- 你得是 Ruby China 的活跃会员或是 Ruby 社区的活跃分子；\r\n- 排版整洁；\r\n- 说清楚你的 App，网站是做什么的；\r\n- 你的产品受众群得是和技术人员有关的；\r\n",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "翻译",
+            "summary": "技术文章翻译，请贴原文。\r\n\r\n建议标题用英文的原文标题，这样其他人容易搜索到。",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "EmberJS",
+            "summary": "EmberJS",
+            "sectionName": "Front-End"
+        },
+        {
+            "tagName": "移民",
+            "summary": "讨论移民的话题",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "mRuby",
+            "summary": "Lightweight Ruby https://github.com/mruby/mruby",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "AngularJS",
+            "summary": "AngularJS",
+            "sectionName": "Front-End"
+        },
+        {
+            "tagName": "健康",
+            "summary": "关注开发者健康",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "Crystal",
+            "summary": "Crystal 是一门基于 LLVM 的可编译的语言，它整个设计尽可能的接近 Ruby 的体验，你会看到语法、各种标准库的接口都几乎和 Ruby 一样（兼容不是它的目标）。\r\n\r\nCrystal 给我们带来了 Ruby 一样的语法体验，却又有 C 一样的性能（官方给出的某些测试数据表明） https://crystal-lang.org",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "Node.js",
+            "summary": "Node.js 开发相关的话题",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "瞎扯淡",
+            "summary": "其实这个全称叫“瞎鸡巴扯淡”",
+            "sectionName": "分享"
+        },
+        {
+            "tagName": "React",
+            "summary": "React 前端框架",
+            "sectionName": "Front-End"
+        },
+        {
+            "tagName": "招聘",
+            "summary": "**招聘栏目规则：**《[敬告各位发招聘的公司注意！](https://ruby-china.org/topics/25579)》请仔细阅读!\r\n\r\n-----------\r\n\r\n如果没有发帖权限，请邮件联系 [admin@ruby-china.org](mailto:admin@ruby-china.org) 并注明主题：请开通发布招聘帖权限\r\n\r\n\r\n",
+            "sectionName": "Ruby"
+        },
+        {
+            "tagName": "Dotnet",
+            "summary": "微软的 Dotnet 最近今年一改之前的风格，开始走跨平台、开源的路子，并且还做得很不错！\r\n\r\nDotnet 已经可以在 Linux, macOS 上面跑了，值得讨论。\r\n\r\nhttps://www.microsoft.com/net",
+            "sectionName": "其他语言"
+        },
+        {
+            "tagName": "Vue",
+            "summary": "http://vuejs.org",
+            "sectionName": "Front-End"
+        },
+        {
+            "tagName": "NoPoint",
+            "summary": "以下几种情况的帖子可能会进入此节点：\r\n\r\n1. 标题/正文描述不清不楚;\r\n1. 无意义的发帖;\r\n1. 存在广告嫌疑；\r\n1. 招聘信息描述不清楚，未按照招聘节点的要求发帖，或职位信息不符合社区用户群需求；\r\n1. 新注册的帐号发布产品推广贴是不允许的哦，付出和回报是相等的，当然如果你的产品确实非常有意思，或是和 Ruby 有关的东西，是不会进入这个栏目的。\r\n1. 太过弱的提问会被直接转移到此节点，请在提问前多尝试，多搜索；\r\n1. 理论上，不允许发布 QQ 群、微信群之类讨论群。\r\n\r\n---\r\n\r\n如果你发现你的帖子到了此节点下面，请自我检查反省，并修改帖子内容。\r\n\r\n----\r\n\r\n**招聘贴被转移到此节点原因**\r\n\r\n警告: 以后招聘贴不符合要求，直接移动到本节点，管理员不再回复，如认真阅读，继续新发同样格式的贴，将会被禁用账号！\r\n\r\n- 排版请按 Ruby China 的 Markdown 格式要求，具体请认真阅读: [排版指导](https://ruby-china.org/markdown)，并参考 [这篇招聘](https://ruby-china.org/topics/21144) 的排版;\r\n- 招聘内容过少，缺少公司介绍，产品介绍，职位介绍，或待遇，工作地，联系方式等必要信息；\r\n- 重复发帖（一家公司每月限制只能发一次招聘）；\r\n- 专业不对口（个别不对口，但有特点的，我们会放过）；\r\n\r\n如果你有时间，请阅读 [招聘栏目详细说明](https://ruby-china.org/topics/25579)\r\n\r\n----\r\n\r\n学会如何合理提问，请阅读：https://ruby-china.org/topics/24325\r\n\r\n当你修改好以后，可以回帖 @huacnlee、@Rei、@lgn21st 任何一人，我们将会审核，通过以后才可恢复到其他节点。\r\n\r\n注！多次发现广告嫌疑的帐号，将会被禁用帐号。\r\n\r\n",
+            "sectionName": "Ruby China"
+        }
+    ]
+}

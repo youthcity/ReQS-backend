@@ -16,6 +16,8 @@ module.exports = function (app) {
     return;
   });
   app.use('/user', require('./user'));
+  app.use('/tags', require('./tags'));
+  app.use('/question', require('./question'));
   // app.use('/signup', require('./signup'));
   // app.use('/signin', require('./signin'));
   // app.use('/signout', require('./signout'));
