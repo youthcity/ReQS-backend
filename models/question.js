@@ -40,13 +40,25 @@ module.exports = {
 
   findById(data) {
     return new Promise((resolve, reject) => {
-      QuestionModel.findById(data, (error, doc) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(doc);
-        }
-      });
+      QuestionModel.findById(data)
+        .populate('author')
+        .populate('tags')
+        .exec((error, doc) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(doc);
+          }
+        });
+
+
+      // QuestionModel.findById(data, (error, doc) => {
+      //   if (error) {
+      //     reject(error);
+      //   } else {
+      //     resolve(doc);
+      //   }
+      // });
     });
   },
 

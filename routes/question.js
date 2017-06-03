@@ -53,9 +53,7 @@ router.route('/')
 router.route('/:id')
   .get((req, res, next) => {
     const { id } = req.params;
-        QuestionModel.findOne({
-          _id: id,
-        })
+        QuestionModel.findById(id)
       .then((result) => {
         res.status(200).json({ message: 'Ok', success: true, result });
       })
