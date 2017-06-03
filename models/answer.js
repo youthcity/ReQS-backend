@@ -7,7 +7,7 @@ module.exports = {
       .populate('author')
       .sort({ _id: 1 })
       .exec(); 
-  }
+  },
 
 
   // 添加数据

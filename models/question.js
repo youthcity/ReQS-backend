@@ -1,6 +1,19 @@
 var QuestionModel = require('../lib/mongo').Question;
 
 module.exports = {
+  getQuestionById(id) {
+    return QuestionModel.findById(id)
+      .populate('author')
+      .populate('tags')
+      .exec()
+  },
+  incPv(id) {
+    return QuestionModel
+      .update({ _id: id }, { $inc: { pv: 1 } })
+      .exec();
+  },
+
+
   // 添加数据
   save(data) {
     return new Promise((resolve, reject) => {
@@ -13,7 +26,7 @@ module.exports = {
       });
     });
   },
-  find(data={}, fields=null, options={}) {
+  find(data = {}, fields = null, options = {}) {
     return new Promise((resolve, reject) => {
       QuestionModel.find(data, fields, options, (error, doc) => {
         if (error) {
