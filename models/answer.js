@@ -1,10 +1,19 @@
-var QuestionModel = require('../lib/mongo').Question;
+var AnswerModel = require('../lib/mongo').Answer;
 
 module.exports = {
+  getAnswer(questionId) {
+     return AnswerModel
+      .find({ questionId })
+      .populate('author')
+      .sort({ _id: 1 })
+      .exec(); 
+  }
+
+
   // 添加数据
   save(data) {
     return new Promise((resolve, reject) => {
-      QuestionModel.create(data, (error, doc) => {
+      AnswerModel.create(data, (error, doc) => {
         if (error) {
           reject(error);
         } else {
@@ -15,7 +24,7 @@ module.exports = {
   },
   find(data={}, fields=null, options={}) {
     return new Promise((resolve, reject) => {
-      QuestionModel.find(data, fields, options, (error, doc) => {
+      AnswerModel.find(data, fields, options, (error, doc) => {
         if (error) {
           reject(error);
         } else {
@@ -28,7 +37,7 @@ module.exports = {
   // findOne
   findOne(data) {
     return new Promise((resolve, reject) => {
-      QuestionModel.findOne(data, (error, doc) => {
+      AnswerModel.findOne(data, (error, doc) => {
         if (error) {
           reject(error);
         } else {
@@ -40,7 +49,7 @@ module.exports = {
 
   findById(data) {
     return new Promise((resolve, reject) => {
-      QuestionModel.findById(data)
+      AnswerModel.findById(data)
         .populate('author')
         .populate('tags')
         .exec((error, doc) => {
@@ -51,7 +60,7 @@ module.exports = {
           }
         });
 
-      // QuestionModel.findById(data, (error, doc) => {
+      // AnswerModel.findById(data, (error, doc) => {
       //   if (error) {
       //     reject(error);
       //   } else {
@@ -63,7 +72,7 @@ module.exports = {
 
   update(conditions, update) {
     return new Promise((resolve, reject) => {
-      QuestionModel.update(conditions, update, (error, doc) => {
+      AnswerModel.update(conditions, update, (error, doc) => {
         if (error) {
           reject(error);
         } else {
@@ -75,7 +84,7 @@ module.exports = {
 
   remove(conditions) {
     return new Promise((resolve, reject) => {
-      QuestionModel.remove(conditions, (error, doc) => {
+      AnswerModel.remove(conditions, (error, doc) => {
         if (error) {
           reject(error);
         } else {

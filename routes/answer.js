@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var QuestionModel = require('../models/question');
+var AnswerModel = require('../models/answer');
 // 批量上传
 // var model = require('../lib/mongo').Question;
 // var data =require('./data/topic_data.json');
@@ -17,9 +17,9 @@ router.route('/')
     //   }
     //   res.status(200).json(doc);
     // });
-    QuestionModel.find()
-      .then((questions) => {
-        res.status(200).json({ message: 'Ok', success: true, questions });
+    AnswerModel.find()
+      .then((result) => {
+        res.status(200).json({ message: 'Ok', success: true, result });
       })
       .catch((e) => {
         res.status(400).json({ message: 'error' });
@@ -28,7 +28,7 @@ router.route('/')
   })
   .post((req, res, next) => {
     const user = req.session.user;
-    const {title, content, tags} = req.body;
+    const { content, questionId } = req.body;
 
     if (!user) {
       res.status(400).json({ message: '用户未登录' });
@@ -37,11 +37,10 @@ router.route('/')
     let author = user._id;
     let question = {
       author,
-      title,
       content,
-      tags,
+      questionId,
     };
-    QuestionModel.save(question)
+    AnswerModel.save(question)
       .then((result) => {
         console.log(result, '   question保存成功');
         res.status(200).json({ message: 'Ok', success: true, result });
@@ -52,9 +51,8 @@ router.route('/')
 // Question /question:id get delete patch
 router.route('/:id')
   .get((req, res, next) => {
-    // 获取问题所有相关信息
     const { id } = req.params;
-        QuestionModel.findById(id)
+        AnswerModel.findById(id)
       .then((result) => {
         res.status(200).json({ message: 'Ok', success: true, result });
       })
@@ -65,7 +63,7 @@ router.route('/:id')
   })
   .delete((req, res, next) => {
     const { id } = req.params;
-    QuestionModel.remove({
+    AnswerModel.remove({
       _id: id,
     })
     .then((result) => {
@@ -83,13 +81,12 @@ router.route('/:id')
   .patch((req, res, next) => {
     const { id } = req.params;
     const { tagName, summary} = req.body;
-    let tag = {
-      tagName,
-      summary,
+    let obj = {
+      content,
     }
-    QuestionModel.update({
+    AnswerModel.update({
       _id: id},
-      tag
+      obj
       ).then((result) => {
       if (!result || result.ok === 0) {
         res.status(400).json({ message: 'error' });
