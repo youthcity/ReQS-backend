@@ -31,7 +31,7 @@ router.route('/')
     var { type } = req.query;
 
     switch (type) {
-      case 'popular':
+      case 'excellent':
         QuestionModel.getQuestionListByPopular()
           .then((result) => {
             res.status(200).json({ message: 'Ok', success: true, result });
