@@ -23,6 +23,7 @@ module.exports = {
     return AnswerModel
       .find({ questionId })
       .populate('author')
+      .populate({ path: 'comment.author', model: 'user'})
       .sort({ _id: 1 })
       .exec();
   },
