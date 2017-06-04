@@ -12,8 +12,28 @@ module.exports = {
       .update({ _id: id }, { $inc: { pv: 1 } })
       .exec();
   },
-
-
+  getQuestionListByDefault() {
+    return QuestionModel.find()
+      .populate('author')
+      .exec();
+  },
+  getQuestionListByPopular() {
+    return QuestionModel.find({excellent: 1})
+      .populate('author')
+      .exec();
+  },
+  getQuestionListByRecent() {
+    return QuestionModel.find()
+      .populate('author')
+      .sort({'creationDate': -1})
+      .exec();
+  },
+  getQuestionListByNoReply() {
+    return QuestionModel.find({ answer: { $size: 0}})
+      .populate('author')
+      .sort({'creationDate': -1})
+      .exec();
+  },
   // 添加数据
   save(data) {
     return new Promise((resolve, reject) => {

@@ -10,6 +10,7 @@ var AnswerModel = require('../models/answer');
 
 // Question /question
 router.route('/')
+  // 获取问题列表
   .get((req, res, next) => {
     // 批量上传数据代码
     // model.collection.insert(data.topics, (err, doc) => {
@@ -18,14 +19,63 @@ router.route('/')
     //   }
     //   res.status(200).json(doc);
     // });
-    QuestionModel.find()
-      .then((questions) => {
-        res.status(200).json({ message: 'Ok', success: true, questions });
-      })
-      .catch((e) => {
-        res.status(400).json({ message: 'error' });
-        next(e);
-      });
+
+    // QuestionModel.find()
+    //   .then((questions) => {
+    //     res.status(200).json({ message: 'Ok', success: true, questions });
+    //   })
+    //   .catch((e) => {
+    // res.status(400).json({ message: 'error' });
+    // next(e);
+    //   });
+    var { type } = req.query;
+
+    switch (type) {
+      case 'popular':
+        QuestionModel.getQuestionListByPopular()
+          .then((result) => {
+            res.status(200).json({ message: 'Ok', success: true, result });
+            return;
+          })
+          .catch((e) => {
+            res.status(400).json({ message: 'error' });
+            next(e);
+          });
+        break;
+      case 'no_reply':
+        QuestionModel.getQuestionListByNoReply()
+          .then((result) => {
+            res.status(200).json({ message: 'Ok', success: true, result });
+            return;
+          })
+          .catch((e) => {
+            res.status(400).json({ message: 'error' });
+            next(e);
+          });
+        break;
+      case 'recent':
+        QuestionModel.getQuestionListByRecent()
+          .then((result) => {
+            res.status(200).json({ message: 'Ok', success: true, result });
+            return;
+          })
+          .catch((e) => {
+            res.status(400).json({ message: 'error' });
+            next(e);
+          });
+        break;
+      default:
+        QuestionModel.getQuestionListByDefault()
+          .then((result) => {
+            res.status(200).json({ message: 'Ok', success: true, result });
+            return;
+          })
+          .catch((e) => {
+            res.status(400).json({ message: 'error' });
+            next(e);
+          });
+    }
+
   })
   .post((req, res, next) => {
     const user = req.session.user;

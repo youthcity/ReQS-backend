@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var AnswerModel = require('../models/answer');
+var QuestionModel = require('../models/question');
 // 批量上传
 // var model = require('../lib/mongo').Question;
 // var data =require('./data/topic_data.json');
@@ -42,9 +43,18 @@ router.route('/')
     };
     AnswerModel.save(question)
       .then((result) => {
+        console.log('result===question==', result);
+        return QuestionModel.update({_id: questionId},{
+          $push: { answer: result._id }
+        });
+      }).then((result) => {
         console.log(result, '   question保存成功');
         res.status(200).json({ message: 'Ok', success: true, result });
       })
+      .catch((e)=>{
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });
   });
 
 
