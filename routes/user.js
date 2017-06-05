@@ -56,13 +56,14 @@ router.post('/signin', (req, res, next) => {
 
 // 用户信息 /userInfo
 router.get('/userInfo', (req, res, next) => {
-  console.log("====", req.session)
   var user = req.session.user;
   if (!user) {
-    res.status(200).send({ message: 'Not Login' });    
+    res.status(200).send({ message: 'Not Login' });
     return;
   }
-  res.status(200).send({success: true, user});
+  UserModel.findById(user._id).then((user) => {
+    res.status(200).send({ success: true, user });
+  });
 });
 
 
@@ -70,6 +71,43 @@ router.get('/userInfo', (req, res, next) => {
 router.get('/logout', (req, res, next) => {
   req.session.user = null;
   res.status(200).send({success: true});
+});
+
+// 用户 pv
+router.get('/pv/:id', (req, res, next) => {
+  let {id} = req.params;
+  // UserModel.incPv()
+  if (id) {
+    UserModel.incPv(id).then((result) => {
+      if (result.ok) {
+        res.status(200).send({success: true});
+      } else {
+        res.status(400).json({ message: 'error' });
+      }
+    })
+    .catch((e) => {
+      res.status(400).json({ message: 'error' });      
+    });
+  }
+});
+
+// 获取用户信息
+router.get('/:id/userInfo', (req, res, next) => {
+  let {id} = req.params;
+  // UserModel.incPv()
+  if (id) {
+    Promise.all([
+      UserModel.findById(id),
+      UserModel.incPv(id),
+    ]).then((result) => {
+      console.log(result);
+      let userinfo = result[0];
+      res.status(200).send({success: true, userinfo});
+    }).catch((e) => {
+      res.status(400).json({ message: 'error' });
+      next(e);
+    });
+  }
 });
 
 module.exports = router;

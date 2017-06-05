@@ -1,6 +1,14 @@
 var UserModel = require('../lib/mongo').User;
 
 module.exports = {
+  // inc pv
+  incPv(id) {
+    return UserModel
+      .update({ _id: id }, { $inc: { pv: 1 } })
+      .exec();
+  },
+
+
   // 添加数据
   save(data) {
     return new Promise((resolve, reject) => {

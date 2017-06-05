@@ -19,6 +19,7 @@ module.exports = function (app) {
   app.use('/tags', require('./tags'));
   app.use('/question', require('./question'));
   app.use('/answer', require('./answer'));
+  app.use('/users', require('./users'));
   // app.use('/signin', require('./signin'));
   // app.use('/signout', require('./signout'));
   // app.use('/question', require('./posts'));
