@@ -34,6 +34,13 @@ module.exports = {
       .sort({'creationDate': -1})
       .exec();
   },
+  getQuestionListByUserId(id) {
+     return QuestionModel.find({ author: id})
+      .populate('author')
+      .populate('tags')
+      .sort({'creationDate': -1})
+      .exec();   
+  },
   // 添加数据
   save(data) {
     return new Promise((resolve, reject) => {

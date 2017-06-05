@@ -7,6 +7,18 @@ module.exports = {
       .update({ _id: id }, { $inc: { pv: 1 } })
       .exec();
   },
+  findFansById(id) {
+    return UserModel.findOne({_id: id})
+      .populate('fans')
+      .select('fans')
+      .exec();
+  },
+  findFollowsById(id) {
+    return UserModel.findOne({ _id: id })
+      .populate('follows')
+      .select('follows')
+      .exec();
+  },
 
 
   // 添加数据

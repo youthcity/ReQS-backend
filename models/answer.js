@@ -27,6 +27,13 @@ module.exports = {
       .sort({ _id: 1 })
       .exec();
   },
+  getAnswerListByUserId(id) {
+    return AnswerModel
+      .find({ author: id })
+      .populate('questionId')
+      .sort({ _id: 1 })
+      .exec();
+  },
 
 
   // 添加数据

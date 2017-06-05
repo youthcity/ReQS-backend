@@ -4,6 +4,8 @@ const utils = require('utility');
 var router = express.Router();
 
 var UserModel = require('../models/users');
+var QuestionModel = require('../models/question');
+var AnswerModel = require('../models/answer');
 
 // 注册 /signup
 router.post('/signup', function(req, res, next) {
@@ -107,6 +109,56 @@ router.get('/:id/userInfo', (req, res, next) => {
       res.status(400).json({ message: 'error' });
       next(e);
     });
+  }
+});
+
+// 获取用户所有提问
+router.get('/:id/logs',(req, res, next) => {
+  let { id } = req.params;
+  let { type } = req.query;
+  switch (type) {
+    case 'question':
+      QuestionModel.getQuestionListByUserId(id)
+        .then((result) => {
+          res.status(200).send({ success: true, result });
+        }).catch((e) => {
+          res.status(400).json({ message: 'error' });
+          next(e);
+        });
+      break;
+    case 'answer':
+      AnswerModel.getAnswerListByUserId(id)
+        .then((result) => {
+          res.status(200).send({success: true, result});
+        }).catch((e) => {
+          res.status(400).json({ message: 'error' });
+          next(e);
+        });
+      break;
+    case 'fans':
+      UserModel.findFansById(id).then((result) => {
+        res.status(200).send({success: true, result: result.fans});
+      }).catch((e) => {
+          res.status(400).json({ message: 'error' });
+          next(e);
+        })
+      break;
+    case 'follow':
+      UserModel.findFollowsById(id).then((result) => {
+        res.status(200).send({ success: true, result: result.follows });
+      }).catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      })
+      break;
+    default:
+      QuestionModel.getQuestionListByUserId(id)
+        .then((result) => {
+          res.status(200).send({ success: true, result });
+        }).catch((e) => {
+          res.status(400).json({ message: 'error' });
+          next(e);
+        });
   }
 });
 
