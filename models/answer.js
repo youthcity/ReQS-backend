@@ -1,10 +1,10 @@
 var AnswerModel = require('../lib/mongo').Answer;
 
 module.exports = {
-  addComment(questionId, comment) {
+  addComment(answerId, comment) {
     return new Promise((resolve, reject) => {
       AnswerModel.update({
-        _id: questionId
+        _id: answerId
       }, {
           $push: { comment: comment }
         }, (error, doc) => {
@@ -32,6 +32,15 @@ module.exports = {
       .find({ author: id })
       .populate('questionId')
       .sort({ _id: 1 })
+      .exec();
+  },
+  addThanks(answerId, userId) {
+    return AnswerModel
+      .findOneAndUpdate({
+        _id: answerId
+      },{
+        $push: { thanks: userId }
+      })
       .exec();
   },
 

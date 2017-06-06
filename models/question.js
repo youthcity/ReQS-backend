@@ -41,6 +41,14 @@ module.exports = {
       .sort({'creationDate': -1})
       .exec();   
   },
+  addLikes(questionId, userId) {
+    return QuestionModel.findOneAndUpdate({
+      _id: questionId
+    }, {
+      $addToSet: { likes: userId}
+    })
+    .exec();
+  },
   // 添加数据
   save(data) {
     return new Promise((resolve, reject) => {

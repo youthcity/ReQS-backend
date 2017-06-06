@@ -19,7 +19,30 @@ module.exports = {
       .select('follows')
       .exec();
   },
-
+  addFollow(userId, followId) {
+    return UserModel.findOneAndUpdate({
+      _id: userId,
+    }, {
+      $addToSet: { follows: followId}
+    })
+    .exec();
+  },
+  addFan(userId, fanId) {
+    return UserModel.findOneAndUpdate({
+      _id: userId,
+    }, {
+      $addToSet: { fans: fanId}
+    })
+    .exec();
+  },
+  addFavorite(userId, questionId) {
+    return UserModel.findOneAndUpdate({
+      _id: userId,
+    }, {
+      $addToSet: { favlists: questionId}
+    })
+    .exec();    
+  },
 
   // 添加数据
   save(data) {

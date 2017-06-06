@@ -167,4 +167,26 @@ router.route('/:id/comment')
     });
   });
 
+  // 答案 感谢功能
+router.get('/:id/thanks', (req, res, next) => {
+  const user = req.session.user;
+
+  if (!user) {
+    res.status(400).json({ message: '用户未登录' });
+    return;
+  }
+
+  const { id } = req.params;
+  const userId = user._id;
+  AnswerModel.addThanks(id, userId)
+    .then((result) => {
+      res.status(200).json({ message: 'Ok', success: true,result });
+    })
+    .catch((e) => {
+      res.status(400).json({ message: 'error' });
+      next(e);
+    });
+
+});
+
 module.exports = router;

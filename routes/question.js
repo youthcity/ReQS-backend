@@ -172,5 +172,27 @@ router.route('/:id')
     });
   });
 
+  // 问答点赞
+  router.get('/:id/likes', (req, res, next) => {
+    const user = req.session.user;
+
+    if (!user) {
+      res.status(400).json({ message: '用户未登录' });
+      return;
+    }
+    const userId = user._id;
+    const { id } = req.params;
+    QuestionModel.addLikes(id, userId)
+      .then((result) => {
+        res.status(200).json({ message: 'Ok', success: true,result });
+      })
+      .catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      })
+
+    
+  });
+
 
 module.exports = router;

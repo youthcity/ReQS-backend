@@ -95,21 +95,16 @@ router.get('/pv/:id', (req, res, next) => {
 
 // 获取用户信息
 router.get('/:id/userInfo', (req, res, next) => {
-  let {id} = req.params;
-  // UserModel.incPv()
-  if (id) {
-    Promise.all([
-      UserModel.findById(id),
-      UserModel.incPv(id),
-    ]).then((result) => {
-      console.log(result);
-      let userinfo = result[0];
-      res.status(200).send({success: true, userinfo});
-    }).catch((e) => {
-      res.status(400).json({ message: 'error' });
-      next(e);
-    });
+  const user = req.session.user;
+
+  if (!user) {
+    res.status(400).json({ message: '用户未登录' });
+    return;
   }
+  const userId = user._id;
+  const {id} = req.params;
+
+
 });
 
 // 获取用户所有提问
@@ -161,5 +156,54 @@ router.get('/:id/logs',(req, res, next) => {
         });
   }
 });
+
+// 关注与被关注
+router.get('/:id/follow', (req, res, next) => {
+  const user = req.session.user;
+
+  if (!user) {
+    res.status(400).json({ message: '用户未登录' });
+    return;
+  }
+  const userId = user._id;
+  let {id} = req.params;
+  // UserModel.incPv()
+  if (id) {
+    Promise.all([
+      UserModel.addFollow(userId, id),
+      UserModel.addFan(id, userId),
+    ]).then((result) => {
+      res.status(200).send({success: true, result});
+    }).catch((e) => {
+      res.status(400).json({ message: 'error' });
+      next(e);
+    });
+  }
+});
+
+ // 添加收藏问题
+router.get('/:questionId/favorite', (req, res, next) => {
+  const user = req.session.user;
+
+  if (!user) {
+    res.status(400).json({ message: '用户未登录' });
+    return;
+  }
+  const userId = user._id;
+  let {questionId} = req.params;
+
+  if (questionId) {
+    UserModel.addFavorite(userId, questionId)
+      .then((result) => {
+        res.status(200).send({ success: true, result });
+
+      })
+      .catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });
+  }
+}); 
+
 
 module.exports = router;
