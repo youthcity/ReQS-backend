@@ -95,16 +95,21 @@ router.get('/pv/:id', (req, res, next) => {
 
 // 获取用户信息
 router.get('/:id/userInfo', (req, res, next) => {
-  const user = req.session.user;
-
-  if (!user) {
-    res.status(400).json({ message: '用户未登录' });
-    return;
+  let { id } = req.params;
+  // UserModel.incPv()
+  if (id) {
+    Promise.all([
+      UserModel.findById(id),
+      UserModel.incPv(id),
+    ]).then((result) => {
+      console.log(result);
+      let userinfo = result[0];
+      res.status(200).send({ success: true, userinfo });
+    }).catch((e) => {
+      res.status(400).json({ message: 'error' });
+      next(e);
+    });
   }
-  const userId = user._id;
-  const {id} = req.params;
-
-
 });
 
 // 获取用户所有提问

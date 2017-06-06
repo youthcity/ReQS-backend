@@ -189,4 +189,41 @@ router.get('/:id/thanks', (req, res, next) => {
 
 });
 
+// 答案投票
+router.get('/:id/voteAnswer', (req, res, next) => {
+  const user = req.session.user;
+  if (!user) {
+    res.status(400).json({ message: '用户未登录' });
+    return;
+  }
+
+  const { id } = req.params;
+  const { type } = req.query; // vote_up vote_down
+  const userId = user._id;
+
+  if (type === 'vote_up') {
+    AnswerModel.voteUp(id, userId)
+      .then((result) => {
+        res.status(200).json({ message: 'Ok', success: true, result });
+        return;
+      })
+      .catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });
+  } else if (type === 'vote_down') {
+    AnswerModel.voteDown(id, userId)
+      .then((result) => {
+        res.status(200).json({ message: 'Ok', success: true, result });
+      })
+      .catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });      
+  } else {
+    res.status(400).json({ message: 'error' });
+    return;
+  }
+});
+
 module.exports = router;

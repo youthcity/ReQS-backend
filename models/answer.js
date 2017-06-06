@@ -43,6 +43,25 @@ module.exports = {
       })
       .exec();
   },
+  voteUp(id, userId) {
+    return AnswerModel
+      .update({
+        _id: id
+      }, {
+        $inc: {voteup_count: 1},
+        $addToSet: {likes: userId},
+      })
+  },
+  voteDown(id, userId) {
+    return AnswerModel
+      .update({
+        _id: id
+      }, {
+        $inc: { voteup_count: -1 },
+        $addToSet: { hates: userId }
+      })
+  },   
+          
 
 
   // 添加数据
