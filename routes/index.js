@@ -20,8 +20,8 @@ module.exports = function (app) {
   app.use('/question', require('./question'));
   app.use('/answer', require('./answer'));
   app.use('/users', require('./users'));
-  // app.use('/signin', require('./signin'));
-  // app.use('/signout', require('./signout'));
+  app.use('/search', require('./search'));
+  app.use('/cdn', require('./cdn'));
   // app.use('/question', require('./posts'));
   app.use(function (req, res) {
     if (!res.headersSent) {

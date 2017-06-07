@@ -27,6 +27,22 @@ module.exports = {
       .sort({ _id: 1 })
       .exec();
   },
+  getAnswerByTimeDown(questionId) {
+    return AnswerModel
+      .find({ questionId })
+      .populate('author')
+      .populate({ path: 'comment.author', model: 'user'})
+      .sort({ creationDate: -1 })
+      .exec();
+  },
+  getAnswerByTimeUp(questionId) {
+    return AnswerModel
+      .find({ questionId })
+      .populate('author')
+      .populate({ path: 'comment.author', model: 'user'})
+      .sort({ creationDate: 1 })
+      .exec();
+  },
   getAnswerListByUserId(id) {
     return AnswerModel
       .find({ author: id })
@@ -39,7 +55,7 @@ module.exports = {
       .findOneAndUpdate({
         _id: answerId
       },{
-        $push: { thanks: userId }
+        $addToSetpush: { thanks: userId }
       })
       .exec();
   },

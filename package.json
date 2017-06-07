@@ -13,6 +13,7 @@
     "jade": "~1.11.0",
     "mongoose": "^4.9.8",
     "morgan": "~1.8.1",
+    "qiniu": "^6.1.13",
     "serve-favicon": "~2.4.2",
     "utility": "^1.12.0"
   }

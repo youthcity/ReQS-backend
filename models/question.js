@@ -49,6 +49,13 @@ module.exports = {
     })
     .exec();
   },
+  searchByKeyWord(keyword) {
+    return QuestionModel.find( { $text : { $search : keyword } })
+      .populate('author')
+      .sort({'creationDate': -1})
+      .exec();
+  },
+
   // 添加数据
   save(data) {
     return new Promise((resolve, reject) => {

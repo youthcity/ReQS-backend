@@ -122,15 +122,6 @@ router.route('/:id')
       res.status(400).json({ message: 'error' });
       next(e);
     });
-
-    // QuestionModel.findById(id)
-    // .then((result) => {
-    //   res.status(200).json({ message: 'Ok', success: true, result });
-    // })
-    // .catch((e) => {
-    //   res.status(400).json({ message: 'error' });
-    //   next(e);
-    // });
   })
   .delete((req, res, next) => {
     const { id } = req.params;
@@ -194,5 +185,28 @@ router.route('/:id')
     
   });
 
+
+// 根据问题ID 获取答案列表
+router.get('/:id/AnswerList', (req, res, next) => {
+    // 获取问题所有相关信息
+    const { id } = req.params;
+    const { type } = req.query;
+
+    if (type === 'time') {
+      AnswerModel.getAnswerByTimeDown(id).then((result) => {
+        res.status(200).json({ message: 'Ok', success: true, result });
+      }).catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });
+    } else {
+      AnswerModel.getAnswerByTimeUp(id).then((result) => {
+        res.status(200).json({ message: 'Ok', success: true, result });
+      }).catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });
+    }
+});
 
 module.exports = router;
