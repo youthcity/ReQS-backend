@@ -20,9 +20,7 @@ var key = 'reqs.png';
 //构建上传策略函数
 
 
-
-
-// search 根据关键字搜索结果
+// cdn 获取token
 router.post('/upload/token', (req, res, next) => {
   function uptoken(bucket, key) {
     console.log(bucket);

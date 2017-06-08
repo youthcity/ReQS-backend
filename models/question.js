@@ -34,6 +34,12 @@ module.exports = {
       .sort({'creationDate': -1})
       .exec();
   },
+  getQuestionListByJobs() {
+    return QuestionModel.find({ tags: { $in: ['59324a0fe166343173563961']}})
+      .populate('author')
+      .sort({'creationDate': -1})
+      .exec();
+  },
   getQuestionListByUserId(id) {
      return QuestionModel.find({ author: id})
       .populate('author')

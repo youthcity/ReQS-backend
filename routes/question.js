@@ -64,6 +64,17 @@ router.route('/')
             next(e);
           });
         break;
+      case 'jobs':
+        QuestionModel.getQuestionListByJobs()
+          .then((result) => {
+            res.status(200).json({ message: 'Ok', success: true, result });
+            return;
+          })
+          .catch((e) => {
+            res.status(400).json({ message: 'error' });
+            next(e);
+          });
+        break;
       default:
         QuestionModel.getQuestionListByDefault()
           .then((result) => {
