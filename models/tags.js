@@ -1,6 +1,11 @@
 var TagModel = require('../lib/mongo').Tag;
 
 module.exports = {
+  // 获取所有话题总数
+  getTotalTags() {
+    return TagModel.count({})
+      .exec();
+  },
   // 添加数据
   save(data) {
     return new Promise((resolve, reject) => {

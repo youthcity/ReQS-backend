@@ -77,8 +77,11 @@ module.exports = {
         $addToSet: { hates: userId }
       })
   },   
-          
-
+  // 获取回答总数        
+  getTotalAnswers() {
+    return AnswerModel.count({})
+      .exec();
+  },
 
   // 添加数据
   save(data) {

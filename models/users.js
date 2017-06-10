@@ -43,6 +43,11 @@ module.exports = {
     })
     .exec();    
   },
+  // 获取所有用户总数
+  getTotalUsers() {
+    return UserModel.count({})
+      .exec();
+  },
 
   // 添加数据
   save(data) {

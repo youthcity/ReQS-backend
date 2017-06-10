@@ -61,6 +61,11 @@ module.exports = {
       .sort({'creationDate': -1})
       .exec();
   },
+  // 获取所有问题
+  getTotalQuestion() {
+    return QuestionModel.count({})
+      .exec();
+  }, 
 
   // 添加数据
   save(data) {

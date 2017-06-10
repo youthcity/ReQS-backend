@@ -22,7 +22,7 @@ module.exports = function (app) {
   app.use('/users', require('./users'));
   app.use('/search', require('./search'));
   app.use('/cdn', require('./cdn'));
-  // app.use('/question', require('./posts'));
+  app.use('/backend', require('./backend'));
   app.use(function (req, res) {
     if (!res.headersSent) {
       res.status(404).render('404');
