@@ -95,7 +95,7 @@ router.get('/dashboard', (req, res, next) => {
 });
 
 // 获取所有用户
-router.get('/users', (req, res, next) => {
+router.route('/users').get((req, res, next) => {
   UserModel.find()
     .then((result) => {
       res.status(200).json({ message: 'Ok', success: true, result });
@@ -104,7 +104,78 @@ router.get('/users', (req, res, next) => {
       res.status(400).json({ message: 'error' });
       next(e);
     });
+}).post((req, res, next) => {
+  // 注册新用户
+  var { username, password, email, typeId } = req.body;
+  password = utils.md5(password);
+
+  var user = {
+    username: username,
+    password: password,
+    email:email,
+    typeId
+  };
+
+  UserModel.save(user)
+    .then(function(result) {
+      res.status(200).json({ message: 'Ok', success: true, user });
+    })
+    .catch(function(e) {
+      res.status(400).json({ message: 'error' });
+      next(e);
+    });
 });
+
+// 用户搜索
+router.post('/users/search', (req, res, next) => {
+  const { text } = req.body;
+  if (text) {
+    UserModel.find({ username: { $regex: text, $options: 'i' } })
+      .then((result) => {
+        res.status(200).json({ message: 'Ok', success: true, result });
+      });
+  } else {
+    res.status(400).json({ message: 'error' });
+  }
+})
+
+// 编辑 和 删除
+router.route('/users/:id').patch((req, res, next) => {
+  const { id } = req.params;
+  let new_obj = req.body;
+  UserModel.update({
+    _id: id
+  },
+    new_obj
+  ).then((result) => {
+    if (!result || result.ok === 0) {
+      res.status(400).json({ message: '修改失败' });
+      return;
+    }
+    res.status(200).json({ message: 'Ok', success: true, result });
+  }).catch((e) => {
+    res.status(400).json({ message: 'error' });
+    next(e);
+  });
+})
+  .delete((req, res, next) => {
+    const { id } = req.params;
+    UserModel.remove({
+      _id: id,
+    })
+      .then((result) => {
+        if (!result) {
+          res.status(400).json({ message: 'error' });
+          return;
+        }
+        res.status(200).json({ message: 'Ok', success: true, result });
+      })
+      .catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });
+  });
+
 
 // 话题
 router.route('/tags').get((req, res, next) => {
@@ -174,6 +245,76 @@ router.route('/tags/:id').patch((req, res, next) => {
     })
       .then((result) => {
         console.log(!result, "=====", result.ok)
+        if (!result) {
+          res.status(400).json({ message: 'error' });
+          return;
+        }
+        res.status(200).json({ message: 'Ok', success: true, result });
+      })
+      .catch((e) => {
+        res.status(400).json({ message: 'error' });
+        next(e);
+      });
+  });
+
+// 问题管理
+// 获取所有问题
+router.route('/question').get((req, res, next) => {
+  QuestionModel.getQuestionListByDefault()
+  .then((result) => {
+    res.status(200).json({ message: 'Ok', success: true, result });
+  })
+  .catch((e) => {
+    res.status(400).json({ message: 'error' });
+    next(e);
+  });
+});
+
+// 全文搜索
+router.post('/question/search', (req, res, next) => {
+  const { text } = req.body;
+  if (text) {
+  QuestionModel.searchByKeyWord(text)
+    .then((result) => {
+      res.status(200).json({ message: 'Ok', success: true, result });     
+    })
+    .catch((e) => {
+      res.status(400).json({ message: 'error' });
+      next(e);
+    });
+  } else {
+    res.status(400).json({ message: 'error' });
+  }
+})
+
+router.route('/question/:id').patch((req, res, next) => {
+  // 加精
+  const { id } = req.params;
+  const { excellent } = req.body;
+  let question = {
+    excellent
+  }
+  QuestionModel.update({
+    _id: id
+  },
+    question
+  ).then((result) => {
+    if (!result) {
+      res.status(400).json({ message: '修改失败' });
+      return;
+    }
+    res.status(200).json({ message: 'Ok', success: true, result });
+  }).catch((e) => {
+    res.status(400).json({ message: 'error' });
+    next(e);
+  });
+})
+  .delete((req, res, next) => {
+    const { id } = req.params;
+    QuestionModel.remove({
+      _id: id,
+    })
+      .then((result) => {
         if (!result) {
           res.status(400).json({ message: 'error' });
           return;
